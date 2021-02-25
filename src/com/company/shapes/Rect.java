@@ -7,27 +7,11 @@ public class Rect extends OutlineShapes
     private int right;
     private int bottom;
 
-    public Rect() {
-        this.name = "Rect";
-        this.left = 0;
-        this.top = 0;
-        this.right = 0;
-        this.bottom = 0;
-    }
-
-    public void setLeft(int left) {
+    private Rect(String name, int left, int top, int right, int bottom) {
+        this.name = name;
         this.left = left;
-    }
-
-    public void setTop(int top) {
         this.top = top;
-    }
-
-    public void setRight(int right) {
         this.right = right;
-    }
-
-    public void setBottom(int bottom) {
         this.bottom = bottom;
     }
 
@@ -38,5 +22,36 @@ public class Rect extends OutlineShapes
                 "\ttop="    + top +    "\n" +
                 "\tright="  + right +  "\n" +
                 "\tbottom=" + bottom + "\n";
+    }
+
+    public static class builder {
+        private int left;
+        private int top;
+        private int right;
+        private int bottom;
+
+        public builder setLeft(int left) {
+            this.left = left;
+            return this;
+        }
+
+        public builder setTop(int top) {
+            this.top = top;
+            return this;
+        }
+
+        public builder setRight(int right) {
+            this.right = right;
+            return this;
+        }
+
+        public builder setBottom(int bottom) {
+            this.bottom = bottom;
+            return this;
+        }
+
+        public Rect build() {
+            return new Rect("Rect", left, top, right, bottom);
+        }
     }
 }

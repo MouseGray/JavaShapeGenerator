@@ -5,19 +5,10 @@ public class Ellipse extends OutlineShapes {
     private int y;
     private int radius;
 
-    public Ellipse() {
-        this.name = "Ellipse";
-        this.x = 0;
-        this.y = 0;
-        this.radius = 0;
-    }
-
-    public void setPos(int x, int y) {
+    private Ellipse(String name, int x, int y, int radius) {
+        this.name = name;
         this.x = x;
         this.y = y;
-    }
-
-    public void setRadius(int radius) {
         this.radius = radius;
     }
 
@@ -27,5 +18,30 @@ public class Ellipse extends OutlineShapes {
                 "\tx=" + x + "\n" +
                 "\ty=" + y + "\n" +
                 "\tradius=" + radius + "\n";
+    }
+
+    public static class builder {
+        private int x;
+        private int y;
+        private int radius;
+
+        public builder setX(int x) {
+            this.x = x;
+            return this;
+        }
+
+        public builder setY(int y) {
+            this.y = y;
+            return this;
+        }
+
+        public builder setRadius(int radius) {
+            this.radius = radius;
+            return this;
+        }
+
+        public Ellipse build() {
+            return new Ellipse("Ellipse", x, y, radius);
+        }
     }
 }

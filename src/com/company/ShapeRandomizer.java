@@ -25,59 +25,69 @@ public final class ShapeRandomizer {
 
     private static com.company.shapes.Point generatePoint() {
         Random rnd = new Random();
-        com.company.shapes.Point p = new Point();
+        Point p = new Point.builder()
+                .setX(rnd.nextInt(limit))
+                .setY(rnd.nextInt(limit))
+                .build();
+
         randomizeShape(p);
 
-        p.setX(rnd.nextInt(limit));
-        p.setY(rnd.nextInt(limit));
-        p.setRadius(rnd.nextInt(3));
         return p;
     }
 
     private static Line generateLine() {
         Random rnd = new Random();
-        Line l = new Line();
-        randomizeShape(l);
+        Line l = new Line.builder()
+                .setX1(rnd.nextInt(limit))
+                .setY1(rnd.nextInt(limit))
+                .setX2(rnd.nextInt(limit))
+                .setY2(rnd.nextInt(limit))
+                .build();
 
-        l.setStartPoint(rnd.nextInt(limit), rnd.nextInt(limit));
-        l.setEndPoint(rnd.nextInt(limit), rnd.nextInt(limit));
-        l.setWidth(rnd.nextInt(3));
+        randomizeShape(l);
         return l;
     }
 
     private static Triangle generateTriangle() {
         Random rnd = new Random();
-        Triangle t = new Triangle();
+        Triangle t = new Triangle.builder()
+                .setX1(rnd.nextInt(limit))
+                .setY1(rnd.nextInt(limit))
+                .setX2(rnd.nextInt(limit))
+                .setY2(rnd.nextInt(limit))
+                .setX3(rnd.nextInt(limit))
+                .setY3(rnd.nextInt(limit))
+                .build();
+
         randomizeShape(t);
         randomizeOutlineShape(t);
-
-        t.setFirstPoint(rnd.nextInt(limit), rnd.nextInt(limit));
-        t.setSecondPoint(rnd.nextInt(limit), rnd.nextInt(limit));
-        t.setThirdPoint(rnd.nextInt(limit), rnd.nextInt(limit));
         return t;
     }
 
     private static Rect generateRect() {
         Random rnd = new Random();
-        Rect r = new Rect();
+        Rect r = new Rect.builder()
+                .setLeft(rnd.nextInt(limit))
+                .setTop(rnd.nextInt(limit))
+                .setRight(rnd.nextInt(limit))
+                .setBottom(rnd.nextInt(limit))
+                .build();
+
         randomizeShape(r);
         randomizeOutlineShape(r);
-
-        r.setLeft(rnd.nextInt(limit));
-        r.setTop(rnd.nextInt(limit));
-        r.setRight(rnd.nextInt(limit));
-        r.setBottom(rnd.nextInt(limit));
         return r;
     }
 
     private static Ellipse generateEllipse() {
         Random rnd = new Random();
-        Ellipse e = new Ellipse();
+        Ellipse e = new Ellipse.builder()
+                .setX(rnd.nextInt(limit))
+                .setY(rnd.nextInt(limit))
+                .setRadius(rnd.nextInt(limit))
+                .build();
+
         randomizeShape(e);
         randomizeOutlineShape(e);
-
-        e.setPos(rnd.nextInt(limit), rnd.nextInt(limit));
-        e.setRadius(rnd.nextInt(limit));
         return e;
     }
 
