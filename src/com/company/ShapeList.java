@@ -3,15 +3,13 @@ package com.company;
 import com.company.shapes.Shape;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.List;
 
-public class ShapeList {
-    private ArrayList<Shape> data = new ArrayList<>();
+public final class ShapeList {
+    private final List<Shape> data = new ArrayList<>();
 
-    public ShapeList(int amount) {
-        if (amount < 0) throw new IllegalArgumentException();
-
-        Random rnd = new Random();
+    public ShapeList(int amount) throws NumberFormatException {
+        if (amount < 0) throw new NumberFormatException();
         for(int i = 0; i < amount; i++)
             data.add(ShapeRandomizer.createNextShape());
     }

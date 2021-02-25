@@ -1,18 +1,18 @@
 package com.company.shapes;
 
-public class Rect extends OutlineShapes
+public final class Rect extends OutlineShapes
 {
-    private int left;
-    private int top;
-    private int right;
-    private int bottom;
+    private final int left;
+    private final int top;
+    private final int right;
+    private final int bottom;
 
-    private Rect(String name, int left, int top, int right, int bottom) {
-        this.name = name;
-        this.left = left;
-        this.top = top;
-        this.right = right;
-        this.bottom = bottom;
+    private Rect(Builder builder) {
+        super(builder);
+        this.left = builder.left;
+        this.top = builder.top;
+        this.right = builder.right;
+        this.bottom = builder.bottom;
     }
 
     @Override
@@ -24,34 +24,43 @@ public class Rect extends OutlineShapes
                 "\tbottom=" + bottom + "\n";
     }
 
-    public static class builder {
+    public static final class Builder extends OutlineShapes.Builder<Builder> {
         private int left;
         private int top;
         private int right;
         private int bottom;
 
-        public builder setLeft(int left) {
+        public Builder() {
+            super("Rect");
+        }
+
+        public Builder setLeft(int left) {
             this.left = left;
             return this;
         }
 
-        public builder setTop(int top) {
+        public Builder setTop(int top) {
             this.top = top;
             return this;
         }
 
-        public builder setRight(int right) {
+        public Builder setRight(int right) {
             this.right = right;
             return this;
         }
 
-        public builder setBottom(int bottom) {
+        public Builder setBottom(int bottom) {
             this.bottom = bottom;
             return this;
         }
 
         public Rect build() {
-            return new Rect("Rect", left, top, right, bottom);
+            return new Rect(this);
+        }
+
+        @Override
+        Builder getThis() {
+            return this;
         }
     }
 }

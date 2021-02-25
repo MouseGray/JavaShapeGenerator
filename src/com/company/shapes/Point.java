@@ -1,13 +1,13 @@
 package com.company.shapes;
 
-public class Point extends Shape {
-    private int x;
-    private int y;
+public final class Point extends Shape {
+    private final int x;
+    private final int y;
 
-    private Point(String name, int x, int y) {
-        this.name = "Point";
-        this.x = 0;
-        this.y = 0;
+    private Point(Builder builder) {
+        super(builder);
+        this.x = builder.x;
+        this.y = builder.y;
     }
 
     @Override
@@ -17,22 +17,31 @@ public class Point extends Shape {
                 "\ty=" + y + "\n";
     }
 
-    public static class builder {
+    public static final class Builder extends Shape.Builder<Builder> {
         private int x;
         private int y;
 
-        public builder setX(int x) {
+        public Builder() {
+            super("Point");
+        }
+
+        public Builder setX(int x) {
             this.x = x;
             return this;
         }
 
-        public builder setY(int y) {
+        public Builder setY(int y) {
             this.y = y;
             return this;
         }
 
         public Point build() {
-            return new Point("Point", x, y);
+            return new Point(this);
+        }
+
+        @Override
+        Builder getThis() {
+            return this;
         }
     }
 }
